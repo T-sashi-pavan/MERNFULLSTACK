@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>home work1</title>
+	<style>
+
+	</style>
+</head>
+<body>
+<div class="p" style="max-width: 100%;display: flex;justify-content: space-evenly;">
+<div style="width:50%;border-style: solid;">
+	<p style="text-align: center;">LOGIN FORM</p>
+	<div style="display:grid;justify-content: space-evenly;border-style: groove;padding: 10px 100px 140px;">
+	<label for="lf">Enter email id</label>
+	<input type="email" id="lf" name="email"><br>
+    <label for="lf">Enter password</label>
+	<input id="lf" type="password" name="pwd"><br>
+	<label for="lf">Enter cache</label>
+	<input id="lf" type="cache" name="cache"><br>
+	<input type="submit" value="login"><br>
+</div>
+</div>
+<div style="width:50%;border-style: solid;">
+	<p style="text-align: center;">REGISTER FORM</p>
+	<div style="display:grid;justify-content: space-evenly;border-style: groove;">
+	<label for="lf">Enter name</label>
+	<input type="name" id="lf" name="name"><br>
+	<label for="lf">Enter email id</label>
+	<input type="email" id="lf" name="email"><br>
+	<label for="lf1">Enter password</label>
+	<input id="lf1" type="password" name="pwd"><br>
+	<label for="lf2">confirm password</label>
+	<input id="lf2" type="password" name="pwd"><br>
+	<label for="lf3">choose country</label>
+	<select id="lf3">
+            <option>spain</option>
+            <option>argentina</option>
+            <option>brazil</option>
+            <option>england</option>
+            <option>italy</option>
+            <option>germany</option>
+        </select><br>
+      <div style="display:flex">
+ 	 <label for="lf4">choose password or not:</label>     
+ 	 <input type="radio"  value="yes">yes
+     <input type="radio"  value="no">no<br> 
+</div><div style="display:flex">
+     <input type="checkbox">agree all conditions<br> 
+</div>
+<input type="submit" value="Register"><br>
+</div>
+</div>
+</body>
+</html>
+.box {
+    height: 200px;
+    width: 200px;
+    background: #CCC;
+    animation-duration: 2s;
+    animation-name: changeShadow;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes changeShadow {
+    from {
+        box-shadow: 0px 4px 8px black;
+    }
+    to {
+        box-shadow: 0px 4px 8px yellow;
+    }
+}

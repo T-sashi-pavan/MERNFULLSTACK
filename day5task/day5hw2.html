@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>home work 2</title>
+</head>
+<body>
+Enter the number:<input type="number" id="io">
+<button id="io1" onclick="io()">Check</button>
+<p id="io2"></p>
+</body>
+<script>
+	function io() {
+		var n1;
+		n1=document.getElementById('io').value;
+		
+		if(n1%4==0 && n1%100!==0 || n1%400==0) {document.getElementById('io2').innerText=n1+" is a leap year"}
+
+	    else {document.getElementById('io2').innerText=n1+" is not a leap year"}
+
+}
+</script>
+</html>
