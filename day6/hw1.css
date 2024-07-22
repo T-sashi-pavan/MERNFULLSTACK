@@ -1,0 +1,9 @@
+.p1{max-width: 100%;display: flex;justify-content: space-evenly;}
+.p2{width:50%;border-style: solid;}
+.p3{text-align: center;}
+.p4{display:grid;justify-content: space-evenly;border-style: groove;padding: 10px 100px 140px;}
+.p5{width:50%;border-style: solid;}
+.p6{text-align: center;}
+.p7{display:grid;justify-content: space-evenly;border-style: groove;}
+.p8{style="display:flex}
+.p9{style="display:flex}
