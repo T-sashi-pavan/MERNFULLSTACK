@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>home work </title>
+</head>
+<body>
+ Enter number of lemons: <input type="number" id="io1">
+    <button onclick="io2()">Check</button>
+    <p id="io3"></p>
+
+    <script>
+        function io2() {
+            var n1;
+            n1 = document.getElementById('io1').value;
+            n2=parseInt(n1);
+            switch (true) {
+                case (n1 <= 0 || isNaN(n2)):
+                    document.getElementById('io3').innerText = "Invalid data";
+                    break;
+                case (n1 != n2):
+                    document.getElementById('io3').innerText = "Enter integer value";
+                    break;
+                case (n1 < 21):
+                    document.getElementById('io3').innerText = "Lemons aren't enough";
+                    break;
+                case (n1 == 21):
+                    document.getElementById('io3').innerText = "Lemons are sufficient";
+                    break;
+                default:
+                    document.getElementById('io3').innerText = "Lemons are more than enough";
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>
+ 
