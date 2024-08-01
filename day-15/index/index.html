@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>home work</title>
+</head>
+<body class="parallax" style="background-image: url('https://img.freepik.com/premium-photo/gmail-background-3d-rendering_665513-483.jpg' ); height: 600%; background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;">
+        <form onsubmit="validateForm(event)">
+        	<div style="display:grid;justify-content: space-evenly;border-style: groove;padding: 130px 10px 140px;">
+                <img src="https://static.dezeen.com/uploads/2020/10/gmail-google-logo-rebrand-workspace-design_dezeen_2364_col_0.jpg" height="40" width="190"><br>
+            <label for="email">Enter email id</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Enter password</label>
+            <input id="password" type="password" name="pwd" required><br>
+            <a href="day13forgotpassword.html" onclick="forgotPassword()" style="color: black;">Forgot Password</a><br>
+            <input type="submit" value="Login"><br>
+   			<p>if not register?<a href="day13registerform.html" onclick="rform()" style="color: black;">sign in</a></p>
+        </div>
+        </form>
+</body>
+<script>
+	function validateForm(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (email === '' || password === '') {
+                alert('Email and password must not be empty');
+                return;
+            }
+            window.location.href = 'day13timer.html';
+        }
+</script>
+</html>

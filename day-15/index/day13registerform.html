@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+ 
+</head>
+<body class="parallax" style="background-image: url('https://img.freepik.com/premium-photo/google-background-3d-rendering_665513-484.jpg' ); height: 600%; background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;">
+    <form id="regform" onsubmit="rform(event)">
+        <div style="display:grid;justify-content: space-evenly;border-style: groove;padding: 130px 10px 140px;">
+            <label for="name">Enter name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Enter email id:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Enter password:</label>
+            <input id="password" type="password" name="password" required><br>
+            <label for="confirmPassword">Confirm password:</label>
+            <input id="confirmPassword" type="password" name="confirmPassword" required><br>
+            <label for="country">Choose country:</label>
+            <select id="country" name="country" required>
+                <option value="">Select a country</option>
+                <option value="spain">Spain</option>
+                <option value="argentina">Argentina</option>
+                <option value="brazil">Brazil</option>
+                <option value="england">England</option>
+                <option value="italy">Italy</option>
+                <option value="germany">Germany</option>
+            </select><br>
+            <div class="flex">
+                <label>Choose password protection:</label>     
+                <input type="radio" name="passwordProtection" value="yes" id="passwordYes">
+                <label for="passwordYes">Yes</label>
+                <input type="radio" name="passwordProtection" value="no" id="passwordNo">
+                <label for="passwordNo">No</label><br> 
+            </div><br>
+            <div class="flex">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">Agree to all conditions</label><br> 
+            </div><br>
+            <input type="submit" value="Register"><br>
+        </div>
+    </form>
+    <script>
+        function rform(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const country = document.getElementById('country').value;
+            const agree = document.getElementById('agree').checked;
+
+            if (username === '' || password === '' || confirmPassword === '' || country === '' || !agree) {
+                alert('All fields must be filled out and agree to conditions must be checked.');
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            alert('Registration successful!');
+            window.location.href = 'index.html'; 
+        }
+    </script>
+</body>
+</html>
