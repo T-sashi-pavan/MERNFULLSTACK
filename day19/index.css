@@ -1,0 +1,38 @@
+/*body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+*/
+.myclass{
+  color: green;
+  background-color: pink;
+  border-color: silver;
+  font-size: 50px;
+  font-family: initial;
+ 
+  margin-top: 12%;
+  margin-left: 28%;
+}
+th {
+  color: navy;
+  background-color: thistle;
+}
+.myclass1{
+  color: skyblue;
+  background-color: seagreen;
+}
+.myclass2{
+  color: palegoldenrod;
+  background-color: skyblue;
+}
+
+
