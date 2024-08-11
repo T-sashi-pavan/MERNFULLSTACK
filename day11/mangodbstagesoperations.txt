@@ -166,3 +166,5 @@ db.student.aggregate([
       text: {
    query: "SHAIK",
 path: "sname"}}}]).pretty();
+
+db.student.find({courses: { $all: ["Math", "History"] }}).pretty();
