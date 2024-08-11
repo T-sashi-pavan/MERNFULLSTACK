@@ -1,0 +1,168 @@
+db.createCollection('student');
+
+
+db.student.insertOne({sid:1,sname:"TIRUMALASETTY SASHI",age:19,address:"guntur",fee:35000});
+db.student.insertMany([{sid: 2, sname: "SHAIK ASLAM",age:20,address:"tirupati",fee:30000 },
+{sid: 3, sname: "SHAIK ALI",age:21,address:"narasaraopeta",fee:34000 },
+{sid: 4, sname: "VELAPATI NARENDRA",age:18,address:"chirala",fee:37000 },
+{sid: 5, sname: "SULANENI VEERARAJA",age:20,address:"rayalaseema",fee:33000 },
+{sid: 6, sname: "gatamaneni vamsi",age:22,address:"palyam",fee:40000 }]);
+
+db.student.find().pretty();
+
+db.student.find({ age: 20 }).pretty();
+
+db.student.find().sort({ fee: -1 }).limit(3).pretty();
+
+db.student.find().sort({ fee: -1 }).pretty();
+
+db.student.find().skip(2).pretty();
+
+db.student.aggregate([{$group: {_id: "$age",averageFee: { $avg: "$fee" }}},{$sort: { averageFee: -1 }}]).pretty();
+db.student.aggregate([{ $sort: { age: 1 } },{$group: {_id: "$address",studentCount: { $sum: 1 }}}]).pretty();
+
+db.student.aggregate([{ $match: { fee: { $gt: 34000 } } },{ $project: { sname: 1, fee: 1, _id: 0 } }]).pretty();
+
+db.course.insertMany([
+  { courseId: 101, studentSid: 1, courseName: "Mathematics", credits: 4 },
+  { courseId: 102, studentSid: 1, courseName: "Physics", credits: 3 },
+  { courseId: 103, studentSid: 2, courseName: "Biology", credits: 3 },
+  { courseId: 104, studentSid: 3, courseName: "Chemistry", credits: 4 },
+  { courseId: 105, studentSid: 4, courseName: "English", credits: 2 },
+  { courseId: 106, studentSid: 6, courseName: "Computer Science", credits: 5 }
+]);
+
+db.student.aggregate([{$lookup: {from: "course",localField: "sid",foreignField: "studentSid",as: "courses"}}]).pretty(); 
+
+[
+  {
+    "_id": ObjectId("..."),
+    "sid": 1,
+    "sname": "TIRUMALASETTY SASHI",
+    "age": 19,
+    "address": "guntur",
+    "fee": 35000,
+    "courses": [
+      { "courseId": 101, "studentSid": 1, "courseName": "Mathematics", "credits": 4 },
+      { "courseId": 102, "studentSid": 1, "courseName": "Physics", "credits": 3 }
+    ]
+  },
+  {
+    "_id": ObjectId("..."),
+    "sid": 2,
+    "sname": "SHAIK ASLAM",
+    "age": 20,
+    "address": "tirupati",
+    "fee": 30000,
+    "courses": [
+      { "courseId": 103, "studentSid": 2, "courseName": "Biology", "credits": 3 }
+    ]
+  },
+  {
+    "_id": ObjectId("..."),
+    "sid": 3,
+    "sname": "SHAIK ALI",
+    "age": 21,
+    "address": "narasaraopeta",
+    "fee": 34000,
+    "courses": [
+      { "courseId": 104, "studentSid": 3, "courseName": "Chemistry", "credits": 4 }
+    ]
+  },
+  {
+    "_id": ObjectId("..."),
+    "sid": 4,
+    "sname": "VELAPATI NARENDRA",
+    "age": 18,
+    "address": "chirala",
+    "fee": 37000,
+    "courses": [
+      { "courseId": 105, "studentSid": 4, "courseName": "English", "credits": 2 }
+    ]
+  },
+  {
+    "_id": ObjectId("..."),
+    "sid": 6,
+    "sname": "gatamaneni vamsi",
+    "age": 22,
+    "address": "palyam",
+    "fee": 40000,
+    "courses": [
+      { "courseId": 106, "studentSid": 6, "courseName": "Computer Science", "credits": 5 }
+    ]
+  }
+]
+
+db.student.aggregate([
+  {
+    $addFields: {Minor: { $lt: ["$age", 20] }}}]).pretty();
+[
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc19"),
+    "sid": 1,
+    "sname": "TIRUMALASETTY SASHI",
+    "age": 19,
+    "address": "guntur",
+    "fee": 35000,
+    "Minor": true
+  },
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc1a"),
+    "sid": 2,
+    "sname": "SHAIK ASLAM",
+    "age": 20,
+    "address": "tirupati",
+    "fee": 30000,
+    "Minor": false
+  },
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc1b"),
+    "sid": 3,
+    "sname": "SHAIK ALI",
+    "age": 21,
+    "address": "narasaraopeta",
+    "fee": 34000,
+    "Minor": false
+  },
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc1c"),
+    "sid": 4,
+    "sname": "VELAPATI NARENDRA",
+    "age": 18,
+    "address": "chirala",
+    "fee": 37000,
+    "Minor": true
+  },
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc1d"),
+    "sid": 5,
+    "sname": "SULANENI VEERARAJA",
+    "age": 20,
+    "address": "rayalaseema",
+    "fee": 33000,
+    "Minor": false
+  },
+  {
+    "_id": ObjectId("64c76b62f9b1f8e7a8bafc1e"),
+    "sid": 6,
+    "sname": "gatamaneni vamsi",
+    "age": 22,
+    "address": "palyam",
+    "fee": 40000,
+    "Minor": false
+  }
+]
+
+db.student.aggregate([{$sortByCount: "$age"]).pretty();
+
+db.student.aggregate([{$addFields: { Minor: { $lt: ["$age", 20] }}},{$out: "employess"])
+
+
+
+db.student.aggregate([
+  {
+    $search: {
+      index: "default",
+      text: {
+   query: "SHAIK",
+path: "sname"}}}]).pretty();
