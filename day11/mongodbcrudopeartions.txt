@@ -1,0 +1,64 @@
+db.createCollection('student');
+
+show collections
+
+db.student.insertOne({sid:1,sname:"TIRUMALASETTY SASHI",age:19,address:"guntur",fee:35000});
+db.student.insertMany([{sid: 2, sname: "SHAIK ASLAM",age:20,address:"tirupati",fee:30000 },
+{sid: 3, sname: "SHAIK ALI",age:21,address:"narasaraopeta",fee:34000 },
+{sid: 4, sname: "VELAPATI NARENDRA",age:18,address:"chirala",fee:37000 },
+{sid: 5, sname: "SULANENI VEERARAJA",age:20,address:"rayalaseema",fee:33000 },
+{sid: 6, sname: "gatamaneni vamsi",age:22,address:"palyam",fee:40000 }]);
+db.student.find();
+
+[
+  { "_id": ObjectId("..."), "sid": 1, "sname": "TIRUMALASETTY SASHI", "age": 19, "address": "guntur", "fee": 35000 },
+  { "_id": ObjectId("..."), "sid": 2, "sname": "SHAIK ASLAM", "age": 20, "address": "tirupati", "fee": 30000 },
+  { "_id": ObjectId("..."), "sid": 3, "sname": "SHAIK ALI", "age": 21, "address": "narasaraopeta", "fee": 34000 },
+  { "_id": ObjectId("..."), "sid": 4, "sname": "VELAPATI NARENDRA", "age": 18, "address": "chirala", "fee": 37000 },
+  { "_id": ObjectId("..."), "sid": 5, "sname": "SULANENI VEERARAJA", "age": 20, "address": "rayalaseema", "fee": 33000 },
+  { "_id": ObjectId("..."), "sid": 6, "sname": "gatamaneni vamsi", "age": 22, "address": "palyam", "fee": 40000 }
+]
+
+db.student.findOne({ sid: 3 });
+
+
+{
+  "sid": 3,
+  "sname": "SHAIK ALI",
+  "age": 21,
+  "address": "narasaraopeta",
+  "fee": 34000
+}
+db.student.findOne({ address: "guntur" });
+
+
+{
+  "sid": 1,
+  "sname": "TIRUMALASETTY SASHI",
+  "age": 19,
+  "address": "tirupati",
+  "fee": 35000
+}
+
+db.student.updateOne({ sid: 2 },{ $set: { fee: 32000 } });
+
+db.student.updateMany({ age: 20 }, { $inc: { fee: 5000 } });
+
+db.student.replaceOne({ sid: 4 },{ sid: 4, sname: "SALMAN KHAN", age: 19, address: "mumbai", fee: 35000 } );
+
+db.student.updateOne({ sid: 6 },{ $set: { address: "new kt road", fee: 42000 } });
+
+db.student.updateOne({ sid: 3, fee: { $lt: 35000 } },{ $set: { fee: 35000 } });
+
+db.student.updateMany({ },{ $set: { email: "sashi@gmail.com" } });
+
+
+db.student.deleteOne({ sid: 2 });
+
+db.student.deleteOne({ _id: ObjectId("66b5d19203ee42632d282160"));
+
+db.student.deleteMany({});
+
+db.student.deleteMany({ sname: { $regex: "^S" } });
+
+db.student.drop();
