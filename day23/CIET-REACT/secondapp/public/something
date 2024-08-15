@@ -1,0 +1,152 @@
+import React, { Component } from 'react';
+import './index.css'; 
+
+class Registerdetails extends Component {
+  render() {
+    return (
+      <div style={{ display: 'grid', justifyContent: 'space-evenly'}}>
+        <RegisterForm/>
+        <Table/>
+      </div>
+    );
+  }
+}
+
+class RegisterForm extends Component {
+  login() {
+    const username = document.getElementById('newUsername').value;
+    const password = document.getElementById('Password').value;
+    if (username && password) {
+      window.location.href = 'Table';
+    } else {
+      alert('Please enter both username and password.');
+    }
+  }
+
+  render() {
+    return (
+      <form id="registerForm">
+        <h2 style={{ textAlign: 'center' }}>LOGIN</h2><br />
+
+        <div style={{ display: 'grid', justifyContent: 'space-evenly', border: '10px solid', padding: '10px 30px 10px 35px' }}>
+          <div style={{ borderStyle: 'ridge', padding: '40px' }}>
+            <label htmlFor="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required /><br /><br />
+            <label htmlFor="Password">Password:</label>
+            <input type="password" id="Password" name="Password" required /><br /><br />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <button type="button" onClick={() => this.login()}>Login</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    );
+  }
+}
+
+
+class Table extends Component {
+  componentDidMount() {
+    const oneMinute = 60;
+    const display = document.querySelector('#time');
+    this.startTimer(oneMinute, display);
+  }
+
+  startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    const interval = setInterval(() => {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      if (display) {
+        display.textContent = minutes + ":" + seconds;
+      }
+
+      if (--timer < 0) {
+        clearInterval(interval);
+        alert('Time is up!');
+        this.logout(); // Call the logout function
+      }
+    }, 1000);
+  }
+
+  logout() {
+    // Clear interval if exists
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+    // Navigate to RegisterForm (or you can handle it with React state)
+    window.location.href = 'RegisterForm';
+  }
+
+  editRow(button) {
+    const row = button.closest('tr');
+    const inputs = row.querySelectorAll('input');
+    const isReadOnly = inputs[0].readOnly;
+    inputs.forEach(input => input.readOnly = !isReadOnly);
+    button.textContent = isReadOnly ? 'Save' : 'Edit';
+  }
+
+  deleteRow(button) {
+    const row = button.closest('tr');
+    row.remove();
+  }
+
+  render() {
+    return (
+      <>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '10px 0px 10px', background: 'ghostwhite' }}>
+          <span id="time" style={{ height: '30px', background: 'orangered', color: 'white', padding: '5px' }}>01:00</span>&nbsp;&nbsp;
+          <button type="button" onClick={() => this.logout()} style={{ height: '30px', background: 'skyblue', color: 'white' }}>
+            <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+          </button>
+        </div>
+        <div style={{ display: 'grid', justifyContent: 'space-evenly', padding: '70px 10px 140px', background: 'transparent' }}>
+          <h1 style={{ textAlign: 'center' }}>Employee details</h1>
+
+          <table border="10" style={{ background: 'pink' }}>
+            <thead>
+              <tr>
+                <th>Empid</th>
+                <th>Empname</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Salary</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="number" name="empid" value="1" readOnly /></td>
+                <td><input type="text" name="empname" value="Sashi" readOnly /></td>
+                <td><input type="number" name="age" value="19" readOnly /></td>
+                <td><input type="email" name="email" value="sessi@gmail.com" readOnly /></td>
+                <td><input type="text" name="address" value="guntur" readOnly /></td>
+                <td><input type="number" name="salary" value="8765456" readOnly /></td>
+                <td>
+                  <button onClick={(e) => this.editRow(e.target)} style={{ color: 'skyblue', display: 'inline' }}>
+                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                  </button>
+                  <button onClick={(e) => this.deleteRow(e.target)} style={{ color: 'skyblue', display: 'inline' }}>
+                    <i className="fa fa-trash-o" aria-hidden="true"></i> Delete
+                  </button>
+                </td>
+              </tr>
+              {/* Add other rows similarly */}
+            </tbody>
+          </table><br />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button style={{ width: '55px' }}>Submit</button>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+
+export default Registerdetails;
