@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Work</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+    <div class="container-fluid" style="display: flex; justify-content: flex-end; padding: 5px 0px 5px; background: gray;">
+        <span id="time" style="height: 30px; background: orangered;">01:00</span>&nbsp;&nbsp;
+        <button type="button" style="height: 30px;"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+    </div>
+    <form action="/register" method="POST">
+        <div style="display: grid; justify-content: space-evenly; border-style: groove; padding: 70px 10px 140px; background: ivory;">
+            <table border="10" style="background: pink;">
+                <thead>
+                    <tr>
+                        <th>Empid</th>
+                        <th>Empname</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Salary</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody id="rows-container">
+                    <tr>
+                        <td><input type="number" name="empid[]" placeholder="Enter empid"></td>
+                        <td><input type="text" name="username[]" placeholder="Enter empname"></td>
+                        <td><input type="number" name="age[]" placeholder="Enter age"></td>
+                        <td><input type="email" name="email[]" placeholder="Enter email"></td>
+                        <td><input type="text" name="address[]" placeholder="Enter address"></td>
+                        <td><input type="number" name="salary[]" placeholder="Enter salary"></td>
+                        <td>
+                            <button type="button" class="edit-button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                            <button type="button" class="delete-button"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" name="empid[]" placeholder="Enter empid"></td>
+                        <td><input type="text" name="username[]" placeholder="Enter empname"></td>
+                        <td><input type="number" name="age[]" placeholder="Enter age"></td>
+                        <td><input type="email" name="email[]" placeholder="Enter email"></td>
+                        <td><input type="text" name="address[]" placeholder="Enter address"></td>
+                        <td><input type="number" name="salary[]" placeholder="Enter salary"></td>
+                        <td>
+                            <button type="button" class="edit-button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                            <button type="button" class="delete-button"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; justify-content: center;">
+                <button type="submit" style="width: 55px;">Submit</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert('Time is up!');
+                    window.location.href = '/home'; 
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const oneMinute = 60; // 60 seconds
+            const display = document.querySelector('#time');
+            startTimer(oneMinute, display);
+        };
+    </script>
+</body>
+</html>
